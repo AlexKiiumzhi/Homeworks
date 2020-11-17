@@ -7,15 +7,14 @@ public class ImmutableCar {
     private final Engine engine;
     private final String color;
 
-    public ImmutableCar(Engine engine, String color) {
-        Engine cloneEngine = new Engine();
-        cloneEngine.setCC(engine.getCC());
-        this.engine = cloneEngine;
+    public ImmutableCar(Engine engine, String color) throws CloneNotSupportedException {
+        super();
+        this.engine = (Engine) engine.clone();
         this.color = color;
     }
 
-    public Engine getEngine() {
-        return engine;
+    public Engine getEngine() throws CloneNotSupportedException {
+        return (Engine) engine.clone();
     }
 
     public String getColor() {
@@ -40,8 +39,7 @@ public class ImmutableCar {
 
     @Override
     public String toString() {
-        return getClass().getName() + "@name" + engine
+        return getClass().getName() + "@engine" + engine
                 + "@color" + color ;
-
     }
 }
